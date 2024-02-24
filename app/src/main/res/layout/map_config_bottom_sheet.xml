@@ -19,12 +19,24 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:fontFamily="@font/lexend_bold"
+        android:gravity="center_horizontal"
+        android:text="@string/map_configuration_title"
+        android:layout_marginTop="25dp"
+        android:layout_marginBottom="20dp"
+        android:textColor="?attr/colorAccent"
+        android:textSize="16sp" />
+
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/mapStyleSelectLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/map_style_config"
-        android:layout_marginTop="25dp"
+
         app:boxStrokeWidth="0dp"
         app:boxStrokeWidthFocused="0dp"
         app:boxCornerRadiusTopStart="@dimen/input_courner_radius"

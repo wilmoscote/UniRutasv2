@@ -1,28 +1,27 @@
 package com.wmsoftware.unirutas.domain.model
 
+import com.google.firebase.Timestamp
+import com.google.firebase.firestore.GeoPoint
 import com.google.gson.annotations.SerializedName
+import kotlinx.serialization.Contextual
 import kotlinx.serialization.Serializable
 
 @Serializable
 data class User(
-    @SerializedName("_id")
-    val id: String?,
-    val username: String?,
-    val password: String?,
-    val name: String?,
-    val lastName: String?,
-    val email: String?,
-    val createdBy: String?,
-    val createdAt: String?,
-    @SerializedName("__v")
-    val v: Int?,
-    val accountStatus: Int?,
-    val sendsEmails: Boolean?,
-    val showActivity: Boolean?,
-    val showStats: Boolean?,
-    val coverPicture: String?,
-    val profilePicture: String?,
-    val socialNetworks: List<String>?,
-    val status: String?,
-    val rolId: String?
+    val id: String? = null,
+    val name: String? = "",
+    val lastName: String? = "",
+    val email: String? = "",
+    val createdAt: String? = null,
+    val status: Int? = 1,
+    val coverPicture: String? = "",
+    val profilePicture: String? = "",
+    val carreer: String? = "Universidad de La Guajira",
+    val lastLocation: LocationInfo? = LocationInfo()
+)
+
+@Serializable
+data class LocationInfo(
+    val latitude: String? = null,
+    val longitude: String? = null
 )

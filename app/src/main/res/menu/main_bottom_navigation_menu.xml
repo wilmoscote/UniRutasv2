@@ -2,7 +2,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/routesFragment"
-        android:icon="@drawable/ic_bus_simple_solid"
+        android:icon="@drawable/location_dot_solid"
         android:enabled="true"
         android:fontFamily="@font/lexend_medium"
         android:title="@string/routes_title" />

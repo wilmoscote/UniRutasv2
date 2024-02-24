@@ -1,5 +1,6 @@
 package com.wmsoftware.unirutas.presentation.viewmodel
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.wmsoftware.unirutas.data.datasource.local.UserPreferences
@@ -13,11 +14,10 @@ import javax.inject.Inject
 
 @HiltViewModel
 class RoutesViewModel @Inject constructor(
-    private val userPreferences: UserPreferences,
-    private val locationService: LocationService
+    userPreferences: UserPreferences,
+    locationService: LocationService
 ) : ViewModel() {
 
-    // SharedFlow para manejar las actualizaciones de ubicación
     val locationFlow = locationService.getLocationFlow().shareIn(
         viewModelScope,
         SharingStarted.WhileSubscribed(5000),

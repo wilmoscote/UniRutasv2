@@ -82,10 +82,12 @@ class UserPreferences @Inject constructor(@ApplicationContext private val contex
     }
 
     /** SETTERS **/
-    suspend fun saveUser(user: User) {
-        val jsonString = Json.encodeToString(User.serializer(), user)
-        dataStore.edit { preferences ->
-            preferences[stringPreferencesKey("user")] = jsonString
+    suspend fun saveUser(user: User?) {
+        if(user != null){
+            val jsonString = Json.encodeToString(User.serializer(), user)
+            dataStore.edit { preferences ->
+                preferences[stringPreferencesKey("user")] = jsonString
+            }
         }
     }
 

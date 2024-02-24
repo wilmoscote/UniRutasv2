@@ -43,12 +43,6 @@ import javax.inject.Inject
 class RoutesFragment : Fragment(), OnMapReadyCallback, OnMapsSdkInitializedCallback {
     private lateinit var binding: FragmentRoutesBinding
 
-    @Inject
-    lateinit var locationService: LocationService
-
-    @Inject
-    lateinit var userPreferences: UserPreferences
-
     private lateinit var map: GoogleMap
     private var isBottomSheetShown = false
     private var firstLookLocation = true
@@ -126,6 +120,18 @@ class RoutesFragment : Fragment(), OnMapReadyCallback, OnMapsSdkInitializedCallb
                 }
             }
         }
+
+        binding.routeSelectLayout.setOnClickListener {
+            if (!isBottomSheetShown) {
+                val bottomSheet = RouteSelectBottomSheet().apply {
+                    onDismissListener = {
+                        isBottomSheetShown = false
+                    }
+                }
+                bottomSheet.show(childFragmentManager, bottomSheet.tag)
+                isBottomSheetShown = true
+            }
+        }
     }
 
     private fun collectUserLocation() {
@@ -143,6 +149,7 @@ class RoutesFragment : Fragment(), OnMapReadyCallback, OnMapsSdkInitializedCallb
         val userLatLng = LatLng(location.latitude, location.longitude)
         if (!::userLocationMarker.isInitialized) {
             val markerOptions = MarkerOptions()
+                .title("Yo")
                 .position(userLatLng)
                 .icon(BitmapDescriptorFactory.fromResource(R.drawable.my_map_pin))
             userLocationMarker = map.addMarker(markerOptions)!!
@@ -181,7 +188,6 @@ class RoutesFragment : Fragment(), OnMapReadyCallback, OnMapsSdkInitializedCallb
 
         viewModel.mapMyLocationConfig.asLiveData().observe(viewLifecycleOwner) { isEnabled ->
             isEnabled?.let {
-                // Asegúrate de manejar los permisos antes de cambiar la visibilidad del marcador
                 if (::userLocationMarker.isInitialized) {
                     userLocationMarker.isVisible = it
                 }

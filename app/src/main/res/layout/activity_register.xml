@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?attr/colorSurfaceContainer"
+    android:animateLayoutChanges="true"
+    tools:context=".presentation.ui.register.RegisterActivity">
+
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/login_form_layout_background"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        >
+
+
+        <ImageView
+            android:id="@+id/btnBack"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            app:srcCompat="@drawable/arrow_left_solid"
+            app:tint="?attr/colorAccent"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="25dp"
+            android:background="@drawable/ripple_effect_custom"
+            android:contentDescription="@string/content_desc_btn_back"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="15dp"
+            android:fontFamily="@font/lexend_bold"
+            android:text="Registrarse"
+            android:textColor="?attr/colorAccent"
+            android:textSize="22sp" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            style="?attr/textInputFilledStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="15dp"
+            android:hint="Nombre"
+            app:boxCornerRadiusBottomEnd="@dimen/input_courner_radius"
+            app:boxCornerRadiusBottomStart="@dimen/input_courner_radius"
+            app:boxCornerRadiusTopEnd="@dimen/input_courner_radius"
+            app:boxCornerRadiusTopStart="@dimen/input_courner_radius"
+            app:boxStrokeWidth="0dp"
+            app:boxStrokeWidthFocused="0dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/txtName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textCapSentences"
+                android:textColor="?attr/colorAccent" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            style="?attr/textInputFilledStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="15dp"
+            android:hint="Apellido"
+            app:boxCornerRadiusBottomEnd="@dimen/input_courner_radius"
+            app:boxCornerRadiusBottomStart="@dimen/input_courner_radius"
+            app:boxCornerRadiusTopEnd="@dimen/input_courner_radius"
+            app:boxCornerRadiusTopStart="@dimen/input_courner_radius"
+            app:boxStrokeWidth="0dp"
+            app:boxStrokeWidthFocused="0dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/txtLastname"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textCapSentences"
+                android:textColor="?attr/colorAccent" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/filledTextField"
+            style="?attr/textInputFilledStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="15dp"
+            android:hint="Correo institucional"
+            app:boxCornerRadiusBottomEnd="@dimen/input_courner_radius"
+            app:boxCornerRadiusBottomStart="@dimen/input_courner_radius"
+            app:boxCornerRadiusTopEnd="@dimen/input_courner_radius"
+            app:boxCornerRadiusTopStart="@dimen/input_courner_radius"
+            app:boxStrokeWidth="0dp"
+            app:boxStrokeWidthFocused="0dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/txtEmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textEmailAddress"
+                android:textColor="?attr/colorAccent" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/filledTextField2"
+            style="?attr/textInputFilledStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="15dp"
+            android:hint="Contraseña"
+            app:boxCornerRadiusBottomEnd="@dimen/input_courner_radius"
+            app:boxCornerRadiusBottomStart="@dimen/input_courner_radius"
+            app:boxCornerRadiusTopEnd="@dimen/input_courner_radius"
+            app:boxCornerRadiusTopStart="@dimen/input_courner_radius"
+            app:boxStrokeWidth="0dp"
+            app:boxStrokeWidthFocused="0dp"
+            app:endIconMode="password_toggle">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/txtPass"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword"
+                android:textColor="?attr/colorAccent" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:layout_marginHorizontal="16dp"
+            android:fontFamily="@font/lexend_light"
+            android:textSize="12sp"
+            android:text="Al presionar Continuar, usted acepta los Términos del servicio y la Política de Privacidad." />
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:layout_marginHorizontal="16dp"
+            >
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnContinue"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/lexend_bold"
+                android:paddingVertical="13dp"
+                android:text="Continuar"
+                android:textColor="?attr/colorAccent"
+                app:backgroundTint="@color/uniguajira_blue"
+                app:cornerRadius="@dimen/input_courner_radius" />
+
+            <ProgressBar
+                android:id="@+id/loading"
+                android:layout_width="30dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="end"
+                android:layout_marginEnd="15dp"
+                android:indeterminate="true"
+                android:visibility="gone"
+                tools:visibility="visible"
+                />
+        </FrameLayout>
+    </LinearLayout>
+
+    <ImageView
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        app:srcCompat="@drawable/shortlogouniguajira"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="10dp"
+        />
+
+    <LinearLayout
+        android:id="@+id/verifyEmailLayout"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:background="?attr/colorSurfaceContainer"
+        android:visibility="gone"
+        >
+        <ImageView
+            android:id="@+id/btnClose"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            app:srcCompat="@drawable/xmark_solid"
+            app:tint="?attr/colorAccent"
+            android:layout_gravity="end"
+            android:layout_marginEnd="16dp"
+            android:layout_marginTop="25dp"
+            android:background="@drawable/ripple_effect_custom"
+            android:contentDescription="@string/content_desc_btn_back"
+            />
+
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            app:srcCompat="@drawable/envelope_circle_check_solid"
+            app:tint="?attr/colorAccent"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/ripple_effect_custom"
+            android:contentDescription="@string/content_desc_btn_back"
+            />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="15dp"
+            android:fontFamily="@font/lexend_bold"
+            android:text="Te hemos enviado un correo"
+            android:textColor="?attr/colorAccent"
+            android:textSize="18sp" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="15dp"
+            android:fontFamily="@font/lexend_light"
+            android:text="Para confirmar tu cuenta, por favor revisa tu correo electrónico y haz clic en el enlace incluido. Debería llegar dentro de los próximos 5 minutos."
+            android:textColor="?attr/colorAccent"
+            android:textSize="14sp" />
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:layout_marginHorizontal="16dp"
+            >
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnVerifyEmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/lexend_bold"
+                android:paddingVertical="13dp"
+                android:text="He Verificado Mi Cuenta"
+                android:textColor="?attr/colorAccent"
+                app:backgroundTint="@color/uniguajira_blue"
+                app:cornerRadius="@dimen/input_courner_radius" />
+
+            <ProgressBar
+                android:id="@+id/verifyLoading"
+                android:layout_width="30dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="end"
+                android:layout_marginEnd="15dp"
+                android:indeterminate="true"
+                android:visibility="gone"
+                tools:visibility="visible"
+                />
+        </FrameLayout>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/versionInfo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="5dp"
+        android:fontFamily="@font/lexend_extralight"
+        android:gravity="center_horizontal"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:text="UniRutas v1.0.0" />
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -10,6 +10,12 @@
     <string name="trafic_view_option">Ver flujo del tráfico</string>
     <string name="route_rute_view_option">Visualizar recorrido de la ruta</string>
     <string name="my_location_view">Ver mi ubicación</string>
+    <string name="map_configuration_title">Configuración del mapa</string>
+    <string name="routes_list_title">Lista de rutas</string>
+    <string name="content_desc_bus_icon">Icono de bus</string>
+    <string name="content_desc_arrow_down">Flecha abajo</string>
+    <string name="content_desc_btn_back">Boton regresar</string>
+    <string name="content_desc_profile_picture">Foto de perfil</string>
     <string-array name="map_types">
         <item>Normal</item>
         <item>Satélite</item>

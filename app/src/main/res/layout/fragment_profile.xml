@@ -1,14 +1,109 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".presentation.ui.profile.ProfileFragment">
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
+        android:id="@+id/profileTitleSection"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center_horizontal"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="25dp"
+        android:fontFamily="@font/lexend_bold"
+        android:text="Perfil"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:textColor="?attr/colorAccent"
+        android:textSize="18sp" />
 
-</FrameLayout>
+    <ImageView
+        android:id="@+id/btnEdit"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        app:srcCompat="@drawable/ic_settings_outlined"
+        app:tint="?attr/colorAccent"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="26dp"
+        android:background="@drawable/ripple_effect_custom"
+        android:contentDescription="@string/content_desc_btn_back"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
+
+    <ImageView
+        android:id="@+id/profilePicture"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        app:srcCompat="@drawable/user_default_picture"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="25dp"
+        android:background="@drawable/ripple_effect_custom"
+        android:contentDescription="@string/content_desc_profile_picture"
+        app:layout_constraintTop_toBottomOf="@+id/profileTitleSection"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        />
+
+    <TextView
+        android:id="@+id/profileName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center_horizontal"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/lexend_bold"
+        tools:text="Wilfred Moscote"
+        app:layout_constraintTop_toBottomOf="@+id/profilePicture"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:textColor="?attr/colorAccent"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/profileCarreer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="5dp"
+        android:fontFamily="@font/lexend_light"
+        tools:text="Universidad de La Guajira"
+        android:textColor="?attr/colorAccent"
+        android:textSize="14sp"
+        app:layout_constraintTop_toBottomOf="@+id/profileName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintTop_toBottomOf="@id/profileCarreer"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="25dp"
+        >
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnLogout"
+            style="@style/Widget.Material3.Button.TextButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="25dp"
+            android:layout_marginBottom="15dp"
+            android:fontFamily="@font/lexend_bold"
+            android:paddingVertical="10dp"
+            android:text="Cerrar sesión"
+            android:textColor="?attr/colorAccent"
+            app:cornerRadius="@dimen/input_courner_radius" />
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
