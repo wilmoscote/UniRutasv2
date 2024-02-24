@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ripple xmlns:android="http://schemas.android.com/apk/res/android"
+    android:color="@color/ripple"> <!-- Asegúrate de que este color proporcione el contraste deseado -->
+    <item>
+        <shape>
+            <solid android:color="#FFFFFF"/> <!-- Color de fondo -->
+            <corners android:radius="12dp"/> <!-- Esquinas redondeadas -->
+            <size android:width="48dp" android:height="48dp"/> <!-- Tamaño -->
+            <stroke android:color="#CCCCCC" android:width="2dp"/> <!-- Borde -->
+        </shape>
+    </item>
+</ripple>

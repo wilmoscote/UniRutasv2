@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ripple xmlns:android="http://schemas.android.com/apk/res/android"
+    android:color="@color/ripple"> <!-- Define el color del efecto ripple en tu colors.xml -->
+    <item>
+        <shape>
+            <solid android:color="#FFFFFF"/> <!-- Color de fondo -->
+            <corners android:bottomLeftRadius="12dp" android:bottomRightRadius="12dp"/>
+            <size android:width="48dp" android:height="48dp"/> <!-- Tamaño -->
+            <stroke android:color="#CCCCCC" android:width="2dp"/> <!-- Borde -->
+        </shape>
+    </item>
+</ripple>

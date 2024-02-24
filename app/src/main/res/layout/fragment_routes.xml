@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".presentation.ui.routes.RoutesFragment">
+
+    <FrameLayout
+        android:id="@+id/barHeaderLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorSurfaceContainer"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/txtRouteStatus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_gravity="center_vertical"
+            app:layout_constraintHorizontal_bias="1.0"
+            android:background="@drawable/item_route_status_available"
+            android:letterSpacing="0"
+            android:paddingHorizontal="8dp"
+            android:paddingVertical="4dp"
+            android:textAppearance="@font/lexend_bold"
+            android:textSize="12sp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="Disponible"
+            android:layout_marginStart="16dp"
+            android:textColor="?attr/colorAccent"
+            android:layout_marginEnd="19dp"
+            android:layout_marginTop="3dp"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginVertical="10dp"
+            android:fontFamily="@font/lexend_bold"
+            android:gravity="center_horizontal"
+            android:text="@string/routes_title"
+            android:textColor="?attr/colorAccent"
+            android:textSize="22sp" />
+
+        <ImageView
+            android:id="@+id/btnMapConfig"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_gravity="center_vertical|end"
+            android:layout_marginEnd="16dp"
+            android:background="@drawable/ripple_effect_custom"
+            android:contentDescription="@string/configuration_button"
+            android:padding="3dp"
+            android:scaleType="centerInside"
+            app:srcCompat="@drawable/gear_solid"
+            app:tint="?attr/colorAccent" />
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/barRoutesListLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorSurfaceContainer"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/barHeaderLayout">
+
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scrollbars="none">
+
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/chipGroup"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:selectionRequired="true"
+                app:singleLine="true"
+                app:checkedChip="@+id/chipRoute1"
+                app:singleSelection="true">
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipRoute1"
+                    style="@style/Widget.Material3.Chip.Suggestion"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:fontFamily="@font/lexend_medium"
+                    android:text="Ruta 1"
+                    android:textColor="?attr/colorAccent"
+                    app:checkedIcon="@drawable/ic_bus_simple_solid"
+                    app:chipCornerRadius="15dp" />
+
+                <com.google.android.material.chip.Chip
+                    style="@style/Widget.Material3.Chip.Suggestion"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/lexend_medium"
+                    android:text="Ruta 2"
+                    android:textColor="?attr/colorAccent"
+                    app:checkedIcon="@drawable/ic_bus_simple_solid"
+                    app:chipCornerRadius="15dp" />
+
+                <com.google.android.material.chip.Chip
+                    style="@style/Widget.Material3.Chip.Suggestion"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/lexend_medium"
+                    android:text="Ruta 3"
+                    app:checkedIcon="@drawable/ic_bus_simple_solid"
+                    app:chipCornerRadius="15dp" />
+
+                <com.google.android.material.chip.Chip
+                    style="@style/Widget.Material3.Chip.Suggestion"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/lexend_medium"
+                    android:text="Ruta 4"
+                    app:checkedIcon="@drawable/ic_bus_simple_solid"
+                    app:chipCornerRadius="15dp" />
+
+                <com.google.android.material.chip.Chip
+                    style="@style/Widget.Material3.Chip.Suggestion"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/lexend_medium"
+                    android:text="Ruta 5"
+                    app:checkedIcon="@drawable/ic_bus_simple_solid"
+                    app:chipCornerRadius="15dp" />
+
+                <com.google.android.material.chip.Chip
+                    style="@style/Widget.Material3.Chip.Suggestion"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/lexend_medium"
+                    android:text="Ruta 6"
+                    app:checkedIcon="@drawable/ic_bus_simple_solid"
+                    app:chipCornerRadius="15dp" />
+
+                <com.google.android.material.chip.Chip
+                    style="@style/Widget.Material3.Chip.Suggestion"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/lexend_medium"
+                    android:text="Ruta 7"
+                    app:checkedIcon="@drawable/ic_bus_simple_solid"
+                    app:chipCornerRadius="15dp" />
+            </com.google.android.material.chip.ChipGroup>
+        </HorizontalScrollView>
+    </FrameLayout>
+
+    <fragment
+        android:id="@+id/map"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/barRoutesListLayout" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="5dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/barRoutesListLayout">
+
+        <Button
+            android:id="@+id/buttonZoomIn"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@drawable/custom_map_zoom_in_button"
+            android:textSize="24sp"
+            app:backgroundTint="@color/white"
+            app:icon="@drawable/plus_solid"
+            app:iconGravity="textEnd"
+            app:iconPadding="0dp"
+            app:iconTint="@color/black" />
+
+        <Button
+            android:id="@+id/buttonZoomOut"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="2dp"
+            android:background="@drawable/custom_map_zoom_out_button"
+            android:textSize="24sp"
+            app:backgroundTint="@color/white"
+            app:icon="@drawable/minus_solid"
+            app:iconGravity="textEnd"
+            app:iconPadding="0dp"
+            app:iconTint="@color/black" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/buttonMyLocation"
+            style="@style/Widget.MaterialComponents.Button"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="2dp"
+            android:background="@drawable/custom_map_my_location_button"
+            android:textColor="#000"
+            android:textSize="24sp"
+            app:backgroundTint="@color/white"
+            app:icon="@drawable/location_arrow_solid"
+            app:iconGravity="textEnd"
+            app:iconPadding="0dp"
+            app:iconTint="@color/black"
+            app:elevation="0dp"
+            />
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

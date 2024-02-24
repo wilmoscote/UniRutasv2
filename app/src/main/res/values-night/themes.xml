@@ -1,0 +1,24 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.UniRutas" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Customize your dark theme here. -->
+        <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
+        <item name="colorPrimary">@color/white</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorPrimaryContainer">@color/ripple</item>
+        <!--<item name="colorSurface">@color/red</item>-->
+        <!--<item name="colorSecondary">@color/red</item>-->
+        <item name="colorOnSecondaryContainer">@color/white</item>
+        <item name="colorSecondaryContainer">@color/uniguajira_blue_light</item>
+        <item name="colorOnSecondary">@color/black</item>
+        <item name="colorPrimaryDark">@color/black</item>
+        <item name="colorAccent">@color/white</item>
+<!--
+        <item name="colorSurfaceContainerHighest">@color/uniguajira_orange_dark_light</item>
+-->
+    </style>
+
+    <style name="Theme.UniRutas" parent="Base.Theme.UniRutas" >
+        <item name="android:fontFamily">@font/lexend_regular</item>
+    </style>
+</resources>

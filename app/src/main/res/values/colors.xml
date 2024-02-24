@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="red">#D81B60</color>
+    <color name="blue">#1E88E5</color>
+    <color name="general_background_color">#f5f6fa</color>
+    <color name="ripple">#99505557</color>
+
+    <!-- COLORES BRANDING UNIGUAJIRA -->
+    <color name="uniguajira_red">#eb5d50</color>
+    <color name="uniguajira_blue">#17a3b2</color>
+    <color name="uniguajira_blue_light">#5E17A3B2</color>
+    <color name="uniguajira_orange">#f0a133</color>
+    <color name="uniguajira_orange_dark">#b97a27</color>
+    <color name="uniguajira_orange_dark_light">#92B97A27</color>
+</resources>

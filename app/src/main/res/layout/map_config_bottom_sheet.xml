@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_marginHorizontal="5dp"
+    android:animateLayoutChanges="true"
+    android:padding="16dp">
+    <androidx.cardview.widget.CardView
+        android:id="@+id/imgDrag"
+        android:layout_width="60dp"
+        android:layout_height="4dp"
+        app:cardCornerRadius="15dp"
+        app:cardElevation="0dp"
+        android:layout_gravity="center_horizontal"
+        android:foreground="?attr/colorAccent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/mapStyleSelectLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/map_style_config"
+        android:layout_marginTop="25dp"
+        app:boxStrokeWidth="0dp"
+        app:boxStrokeWidthFocused="0dp"
+        app:boxCornerRadiusTopStart="@dimen/input_courner_radius"
+        app:boxCornerRadiusTopEnd="@dimen/input_courner_radius"
+        app:boxCornerRadiusBottomStart="@dimen/input_courner_radius"
+        app:boxCornerRadiusBottomEnd="@dimen/input_courner_radius"
+        app:simpleItemSelectedColor="@color/red"
+        style="@style/Widget.Material3.TextInputLayout.FilledBox.ExposedDropdownMenu"
+        >
+
+        <AutoCompleteTextView
+            android:id="@+id/mapStyleSelect"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="none"
+            app:simpleItems="@array/map_types"
+            android:fontFamily="@font/lexend_medium"
+            />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.materialswitch.MaterialSwitch
+        android:id="@+id/myLocationOption"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="15dp"
+        android:textSize="14sp"
+        android:layout_marginHorizontal="2dp"
+        android:fontFamily="@font/lexend_bold"
+        app:trackTint="@color/uniguajira_blue"
+        android:text="@string/my_location_view"/>
+
+    <com.google.android.material.materialswitch.MaterialSwitch
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:checked="true"
+        android:layout_marginTop="15dp"
+        android:textSize="14sp"
+        android:layout_marginHorizontal="2dp"
+        android:fontFamily="@font/lexend_bold"
+        app:trackTint="@color/uniguajira_blue"
+        android:text="@string/route_view_fixed"/>
+
+    <com.google.android.material.materialswitch.MaterialSwitch
+        android:id="@+id/traficViewOption"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="15dp"
+        android:textSize="14sp"
+        android:layout_marginHorizontal="2dp"
+        android:fontFamily="@font/lexend_bold"
+        app:trackTint="@color/uniguajira_blue"
+        android:text="@string/trafic_view_option"/>
+
+    <com.google.android.material.materialswitch.MaterialSwitch
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginHorizontal="2dp"
+        android:layout_marginTop="15dp"
+        android:textSize="14sp"
+        android:fontFamily="@font/lexend_bold"
+        app:trackTint="@color/uniguajira_blue"
+        android:text="@string/route_rute_view_option"/>
+</LinearLayout>
