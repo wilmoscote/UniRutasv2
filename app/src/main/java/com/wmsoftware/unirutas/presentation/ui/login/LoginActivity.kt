@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextUtils
 import android.util.Patterns
+import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.core.content.ContextCompat
@@ -19,10 +20,12 @@ import androidx.lifecycle.repeatOnLifecycle
 import com.google.android.material.snackbar.Snackbar
 import com.wmsoftware.unirutas.R
 import com.wmsoftware.unirutas.databinding.ActivityLoginBinding
+import com.wmsoftware.unirutas.presentation.ui.forgot.ForgotPasswordActivity
 import com.wmsoftware.unirutas.presentation.ui.main.MainActivity
 import com.wmsoftware.unirutas.presentation.ui.register.RegisterActivity
 import com.wmsoftware.unirutas.presentation.ui.splash.StartActivity
 import com.wmsoftware.unirutas.presentation.viewmodel.AuthenticationViewModel
+import com.wmsoftware.unirutas.util.utilities.Validator
 import com.wmsoftware.unirutas.util.utilities.Validator.isValidEmail
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -35,15 +38,21 @@ class LoginActivity : AppCompatActivity() {
     private val requestPermissionLauncher =
         registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) { permissions ->
             val locationGranted = permissions[Manifest.permission.ACCESS_FINE_LOCATION] ?: false
-            val coarseLocationGranted = permissions[Manifest.permission.ACCESS_COARSE_LOCATION] ?: false
-            val postNotificationsGranted = permissions[if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-                Manifest.permission.POST_NOTIFICATIONS
-            } else {
-                Manifest.permission.INTERNET
-            }] ?: false
+            val coarseLocationGranted =
+                permissions[Manifest.permission.ACCESS_COARSE_LOCATION] ?: false
+            val postNotificationsGranted =
+                permissions[if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                    Manifest.permission.POST_NOTIFICATIONS
+                } else {
+                    Manifest.permission.INTERNET
+                }] ?: false
 
             if (!locationGranted && !coarseLocationGranted && !postNotificationsGranted) {
-                Snackbar.make(binding.root, "Por favor habilite todos los permisos solicitados", Snackbar.LENGTH_LONG).show()
+                Snackbar.make(
+                    binding.root,
+                    "Por favor habilite todos los permisos solicitados",
+                    Snackbar.LENGTH_LONG
+                ).show()
             }
         }
 
@@ -73,6 +82,15 @@ class LoginActivity : AppCompatActivity() {
         binding.btnRegister.setOnClickListener {
             startActivity(Intent(this, RegisterActivity::class.java))
         }
+
+        binding.btnForgot.setOnClickListener {
+            startActivity(Intent(this, ForgotPasswordActivity::class.java))
+        }
+
+        binding.versionInfo.setOnLongClickListener {
+            Toast.makeText(this, getString(R.string.love_message), Toast.LENGTH_SHORT).show()
+            return@setOnLongClickListener true
+        }
     }
 
     private fun validateForm(): Boolean {
@@ -94,7 +112,7 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun observeLoginStatus() {
-        viewModel.loading.observe(this){ isLoading ->
+        viewModel.loading.observe(this) { isLoading ->
             binding.loading.isVisible = isLoading
             binding.btnLogin.isEnabled = !isLoading
         }
@@ -105,19 +123,18 @@ class LoginActivity : AppCompatActivity() {
                     result?.let {
                         when (result.isSuccess) {
                             true -> {
-                                val user = result.getOrThrow()
                                 startActivity(Intent(this@LoginActivity, MainActivity::class.java))
                                 finish()
                             }
 
                             false -> {
-                                if(result.exceptionOrNull()?.message.toString().contains("There is no user record corresponding to this identifier")){
-                                    Snackbar.make(binding.root, "No se ha encontrado un usuario registrado con este correo institucional.", Snackbar.LENGTH_LONG).show()
-                                } else if(result.exceptionOrNull()?.message.toString().contains("The password is invalid or the user does not have a password")){
-                                    Snackbar.make(binding.root, "Correo electrónico o contraseña incorrecta", Snackbar.LENGTH_LONG).show()
-                                } else {
-                                    Snackbar.make(binding.root, result.exceptionOrNull()?.message.toString(), Snackbar.LENGTH_LONG).show()
-                                }
+                                Snackbar.make(
+                                    binding.root,
+                                    Validator.FirebaseErrorValidator.getSpanishMessageForError(
+                                        result.exceptionOrNull()?.message.toString()
+                                    ),
+                                    Snackbar.LENGTH_LONG
+                                ).show()
                             }
                         }
                     }
@@ -161,6 +178,7 @@ class LoginActivity : AppCompatActivity() {
                     ) == PackageManager.PERMISSION_GRANTED -> {
                 // Los permisos ya están concedidos, proceder con la funcionalidad
             }
+
             else -> {
                 // Solicitar los permisos
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {

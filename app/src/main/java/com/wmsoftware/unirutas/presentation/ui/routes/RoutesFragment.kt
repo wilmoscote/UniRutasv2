@@ -3,6 +3,7 @@ package com.wmsoftware.unirutas.presentation.ui.routes
 import android.Manifest
 import android.annotation.SuppressLint
 import android.content.pm.PackageManager
+import android.content.res.Configuration
 import android.location.Location
 import android.os.Bundle
 import android.util.Log
@@ -149,26 +150,33 @@ class RoutesFragment : Fragment(), OnMapReadyCallback, OnMapsSdkInitializedCallb
         userLocation = location
         val userLatLng = LatLng(location.latitude, location.longitude)
         if (!::userLocationMarker.isInitialized) {
-            val markerOptions = MarkerOptions()
-                .title("Yo")
-                .position(userLatLng)
-                .icon(BitmapDescriptorFactory.fromResource(R.drawable.my_map_pin))
-            userLocationMarker = map.addMarker(markerOptions)!!
+            try {
+                val markerOptions = MarkerOptions()
+                    .title("Yo")
+                    .position(userLatLng)
+                    .icon(BitmapDescriptorFactory.fromResource(R.drawable.my_map_pin))
+                userLocationMarker = map.addMarker(markerOptions)!!
+            } catch (e: Exception) {
+                Log.e(TAG, e.message.toString())
+            }
         } else {
             userLocationMarker.position = userLatLng
         }
-        if (firstLookLocation){
-            viewModel.updateUserLastLocation(
-                LocationInfo(
-                    userLatLng.latitude.toString(),
-                    userLatLng.longitude.toString()
+        if (firstLookLocation) {
+            try {
+                viewModel.updateUserLastLocation(
+                    LocationInfo(
+                        userLatLng.latitude.toString(),
+                        userLatLng.longitude.toString()
+                    )
                 )
-            )
-            map.animateCamera(CameraUpdateFactory.newLatLngZoom(userLatLng, 15f))
-            firstLookLocation = false
+                map.animateCamera(CameraUpdateFactory.newLatLngZoom(userLatLng, 15f))
+                firstLookLocation = false
+            } catch (e: Exception){
+                Log.e(TAG, e.message.toString())
+            }
         }
     }
-
 
     override fun onMapReady(googleMap: GoogleMap) {
         map = googleMap

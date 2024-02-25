@@ -47,7 +47,7 @@
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_marginStart="-8dp"
-                    android:layout_marginTop="25dp"
+                    android:layout_marginTop="20dp"
                     app:srcCompat="@drawable/shortlogouniguajira" />
 
                 <TextView
@@ -88,121 +88,132 @@
             android:layout_marginTop="-30dp"
             android:background="@drawable/login_form_layout_background"
             android:orientation="vertical">
-
-            <TextView
+            <androidx.core.widget.NestedScrollView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_marginHorizontal="16dp"
-                android:layout_marginTop="25dp"
-                android:fontFamily="@font/lexend_bold"
-                android:text="Iniciar sesión"
-                android:textColor="?attr/colorAccent"
-                android:textSize="22sp" />
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/filledTextField"
-                style="?attr/textInputFilledStyle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="16dp"
-                android:layout_marginTop="15dp"
-                android:hint="Correo institucional"
-                app:boxCornerRadiusBottomEnd="@dimen/input_courner_radius"
-                app:boxCornerRadiusBottomStart="@dimen/input_courner_radius"
-                app:boxCornerRadiusTopEnd="@dimen/input_courner_radius"
-                app:boxCornerRadiusTopStart="@dimen/input_courner_radius"
-                app:boxStrokeWidth="0dp"
-                app:boxStrokeWidthFocused="0dp">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/txtEmail"
+                android:layout_height="match_parent"
+                android:scrollbars="none">
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="textEmailAddress"
-                    android:textColor="?attr/colorAccent" />
+                    android:orientation="vertical">
 
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/filledTextField2"
-                style="?attr/textInputFilledStyle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="16dp"
-                android:layout_marginTop="15dp"
-                android:hint="Contraseña"
-                app:boxCornerRadiusBottomEnd="@dimen/input_courner_radius"
-                app:boxCornerRadiusBottomStart="@dimen/input_courner_radius"
-                app:boxCornerRadiusTopEnd="@dimen/input_courner_radius"
-                app:boxCornerRadiusTopStart="@dimen/input_courner_radius"
-                app:boxStrokeWidth="0dp"
-                app:boxStrokeWidthFocused="0dp"
-                app:endIconMode="password_toggle">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/txtPass"
+                <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="textPassword"
-                    android:textColor="?attr/colorAccent" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <TextView
-                android:id="@+id/btnForgot"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_marginHorizontal="16dp"
-                android:layout_marginTop="15dp"
-                android:fontFamily="@font/lexend_medium"
-                android:text="¿Olvidaste tu contraseña?"
-                android:textColor="?attr/colorAccent"
-                android:textSize="16sp" />
-
-            <FrameLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="16dp"
-                android:layout_marginTop="25dp">
-
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/btnLogin"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginTop="25dp"
                     android:fontFamily="@font/lexend_bold"
-                    android:paddingVertical="13dp"
                     android:text="Iniciar sesión"
                     android:textColor="?attr/colorAccent"
-                    app:backgroundTint="@color/uniguajira_blue"
+                    android:textSize="22sp" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/filledTextField"
+                    style="?attr/textInputFilledStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginTop="15dp"
+                    android:hint="Correo institucional"
+                    app:boxCornerRadiusBottomEnd="@dimen/input_courner_radius"
+                    app:boxCornerRadiusBottomStart="@dimen/input_courner_radius"
+                    app:boxCornerRadiusTopEnd="@dimen/input_courner_radius"
+                    app:boxCornerRadiusTopStart="@dimen/input_courner_radius"
+                    app:boxStrokeWidth="0dp"
+                    app:boxStrokeWidthFocused="0dp">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/txtEmail"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textEmailAddress"
+                        android:textColor="?attr/colorAccent" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/filledTextField2"
+                    style="?attr/textInputFilledStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginTop="15dp"
+                    android:hint="Contraseña"
+                    app:boxCornerRadiusBottomEnd="@dimen/input_courner_radius"
+                    app:boxCornerRadiusBottomStart="@dimen/input_courner_radius"
+                    app:boxCornerRadiusTopEnd="@dimen/input_courner_radius"
+                    app:boxCornerRadiusTopStart="@dimen/input_courner_radius"
+                    app:boxStrokeWidth="0dp"
+                    app:boxStrokeWidthFocused="0dp"
+                    app:endIconMode="password_toggle">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/txtPass"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textPassword"
+                        android:textColor="?attr/colorAccent" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <TextView
+                    android:id="@+id/btnForgot"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginTop="15dp"
+                    android:fontFamily="@font/lexend_medium"
+                    android:text="¿Olvidaste tu contraseña?"
+                    android:textColor="?attr/colorAccent"
+                     />
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginTop="25dp">
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnLogin"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/lexend_bold"
+                        android:paddingVertical="13dp"
+                        android:text="Iniciar sesión"
+                        android:textColor="@color/white"
+                        app:backgroundTint="@color/uniguajira_blue"
+                        app:cornerRadius="@dimen/input_courner_radius" />
+
+                    <ProgressBar
+                        android:id="@+id/loading"
+                        android:layout_width="30dp"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="end"
+                        android:layout_marginEnd="15dp"
+                        android:indeterminate="true"
+                        android:visibility="gone"
+                        android:indeterminateTint="@color/white"
+                        tools:visibility="visible" />
+
+                </FrameLayout>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnRegister"
+                    style="@style/Widget.Material3.Button.TextButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginTop="25dp"
+                    android:layout_marginBottom="15dp"
+                    android:fontFamily="@font/lexend_bold"
+                    android:paddingVertical="13dp"
+                    android:text="¿Nuevo usuario? Regístrate"
+                    android:textColor="?attr/colorAccent"
                     app:cornerRadius="@dimen/input_courner_radius" />
-
-                <ProgressBar
-                    android:id="@+id/loading"
-                    android:layout_width="30dp"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="end"
-                    android:layout_marginEnd="15dp"
-                    android:indeterminate="true"
-                    android:visibility="gone"
-                    tools:visibility="visible" />
-
-            </FrameLayout>
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btnRegister"
-                style="@style/Widget.Material3.Button.TextButton"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="16dp"
-                android:layout_marginTop="25dp"
-                android:layout_marginBottom="15dp"
-                android:fontFamily="@font/lexend_bold"
-                android:paddingVertical="13dp"
-                android:text="¿Nuevo usuario? Regístrate"
-                android:textColor="?attr/colorAccent"
-                app:cornerRadius="@dimen/input_courner_radius" />
+                </LinearLayout>
+            </androidx.core.widget.NestedScrollView>
         </LinearLayout>
     </LinearLayout>
 

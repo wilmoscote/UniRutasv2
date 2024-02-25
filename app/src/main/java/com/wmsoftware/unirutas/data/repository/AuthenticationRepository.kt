@@ -50,4 +50,13 @@ class AuthenticationRepository @Inject constructor(
             emit(Result.failure(e))
         }
     }
+
+    suspend fun sendPasswordResetEmail(email: String): Flow<Result<Boolean>> = flow {
+        try {
+            auth.sendPasswordResetEmail(email).await()
+            emit(Result.success(true))
+        } catch (e: Exception) {
+            emit(Result.failure(e))
+        }
+    }
 }

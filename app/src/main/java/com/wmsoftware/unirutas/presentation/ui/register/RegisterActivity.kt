@@ -4,6 +4,8 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.ArrayAdapter
+import android.widget.AutoCompleteTextView
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.core.view.isVisible
@@ -11,12 +13,16 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.google.android.material.snackbar.Snackbar
+import com.google.android.material.tabs.TabLayout
 import com.google.firebase.auth.FirebaseUser
 import com.wmsoftware.unirutas.R
 import com.wmsoftware.unirutas.databinding.ActivityRegisterBinding
 import com.wmsoftware.unirutas.domain.model.User
 import com.wmsoftware.unirutas.presentation.ui.main.MainActivity
 import com.wmsoftware.unirutas.presentation.viewmodel.AuthenticationViewModel
+import com.wmsoftware.unirutas.util.utilities.Const.diplomadosList
+import com.wmsoftware.unirutas.util.utilities.Const.posgradosList
+import com.wmsoftware.unirutas.util.utilities.Const.pregradosList
 import com.wmsoftware.unirutas.util.utilities.Validator
 import com.wmsoftware.unirutas.util.utilities.Validator.getCurrentDateTime
 import dagger.hilt.android.AndroidEntryPoint
@@ -29,6 +35,7 @@ class RegisterActivity : AppCompatActivity() {
     private lateinit var binding: ActivityRegisterBinding
 
     private val viewModel: AuthenticationViewModel by viewModels()
+    private var carreer = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,9 +49,62 @@ class RegisterActivity : AppCompatActivity() {
 
     private fun initView(){
         binding.versionInfo.text = "UniRutas v${getVersionName()}"
+        val adapter = ArrayAdapter(
+            this,
+            R.layout.dropdown_menu_popup_item,
+            pregradosList
+        )
+        binding.carreerSelect.setAdapter(adapter)
     }
 
     private fun initListeners(){
+        binding.modalitySelect.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
+
+            override fun onTabSelected(tab: TabLayout.Tab?) {
+                carreer = ""
+                binding.carreerSelect.text = null
+                binding.carreerSelect.clearFocus()
+                when(tab?.position){
+                    0 -> {
+                        val adapter = ArrayAdapter(
+                            this@RegisterActivity,
+                            R.layout.dropdown_menu_popup_item,
+                            pregradosList
+                        )
+                        binding.carreerSelect.setAdapter(adapter)
+                        binding.carreerStyleSelectLayout.hint = "Pregrados"
+                    }
+                    1 -> {
+                        val adapter = ArrayAdapter(
+                            this@RegisterActivity,
+                            R.layout.dropdown_menu_popup_item,
+                            posgradosList
+                        )
+                        binding.carreerSelect.setAdapter(adapter)
+                        binding.carreerStyleSelectLayout.hint = "Posgrados"
+                    }
+                    2 -> {
+                        val adapter = ArrayAdapter(
+                            this@RegisterActivity,
+                            R.layout.dropdown_menu_popup_item,
+                            diplomadosList
+                        )
+                        binding.carreerSelect.setAdapter(adapter)
+                        binding.carreerStyleSelectLayout.hint = "Diplomados"
+                    }
+                }
+            }
+
+            override fun onTabReselected(tab: TabLayout.Tab?) {}
+
+            override fun onTabUnselected(tab: TabLayout.Tab?) {}
+        })
+
+        binding.carreerSelect.setOnItemClickListener { parent, view, position, id ->
+            binding.carreerSelect.error = null
+            carreer = parent.adapter.getItem(position).toString()
+        }
+
         binding.btnBack.setOnClickListener {
             onBackPressedDispatcher.onBackPressed()
         }
@@ -55,6 +115,7 @@ class RegisterActivity : AppCompatActivity() {
                     name = binding.txtName.text.toString(),
                     lastName = binding.txtLastname.text.toString(),
                     email = binding.txtEmail.text.toString(),
+                    carreer = carreer,
                     createdAt = getCurrentDateTime()
                 )
                 viewModel.register(binding.txtEmail.text.toString(), binding.txtPass.text.toString(), userData)
@@ -88,6 +149,10 @@ class RegisterActivity : AppCompatActivity() {
         } else if (!Validator.isValidEmail(binding.txtEmail.text.toString())) {
             binding.txtEmail.error = "Sólo se admiten correos @uniguajira.edu.co"
             binding.txtEmail.requestFocus()
+            return false
+        } else if (carreer.isBlank()) {
+            binding.carreerSelect.error = "Debe seleccionar una opción"
+            binding.carreerSelect.requestFocus()
             return false
         } else if (binding.txtPass.text.isNullOrEmpty()) {
             binding.txtPass.error = "Debe ingresar su contraseña"

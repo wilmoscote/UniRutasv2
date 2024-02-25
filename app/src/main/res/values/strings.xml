@@ -16,11 +16,12 @@
     <string name="content_desc_arrow_down">Flecha abajo</string>
     <string name="content_desc_btn_back">Boton regresar</string>
     <string name="content_desc_profile_picture">Foto de perfil</string>
+    <string name="title_carreer">Carrera</string>
     <string-array name="map_types">
         <item>Normal</item>
         <item>Satélite</item>
         <item>Terreno</item>
         <item>Híbrido</item>
     </string-array>
-
+    <string name="love_message">Hecho con ❤️ en La Guajira</string>
 </resources>
