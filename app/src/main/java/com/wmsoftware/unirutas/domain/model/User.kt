@@ -1,9 +1,5 @@
 package com.wmsoftware.unirutas.domain.model
 
-import com.google.firebase.Timestamp
-import com.google.firebase.firestore.GeoPoint
-import com.google.gson.annotations.SerializedName
-import kotlinx.serialization.Contextual
 import kotlinx.serialization.Serializable
 
 @Serializable
@@ -17,11 +13,13 @@ data class User(
     val coverPicture: String? = "",
     val profilePicture: String? = "",
     val carreer: String? = "Universidad de La Guajira",
-    val lastLocation: LocationInfo? = LocationInfo()
+    val lastLocation: LocationInfo? = LocationInfo(),
+    val lastLocationUpdateAt: String? = "",
+    val fcm: String? = ""
 )
 
 @Serializable
 data class LocationInfo(
-    val latitude: String? = null,
-    val longitude: String? = null
+    val latitude: String? = "",
+    val longitude: String? = ""
 )

@@ -15,6 +15,7 @@ import com.wmsoftware.unirutas.databinding.FragmentProfileBinding
 import com.wmsoftware.unirutas.presentation.ui.login.LoginActivity
 import com.wmsoftware.unirutas.presentation.viewmodel.ProfileViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import jp.wasabeef.blurry.Blurry
 
 @AndroidEntryPoint
 class ProfileFragment : Fragment() {
@@ -30,13 +31,14 @@ class ProfileFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentProfileBinding.inflate(layoutInflater)
-        // Inflate the layout for this fragment
+
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         initView()
         initListeners()
+        initObservers()
     }
 
     private fun initView(){
@@ -70,9 +72,12 @@ class ProfileFragment : Fragment() {
                 .setNegativeButton("Cancelar") {dialog, _ ->
                     dialog.dismiss()
                 }
-                .setCancelable(false)
                 .create()
                 .show()
         }
+    }
+
+    private fun initObservers(){
+
     }
 }

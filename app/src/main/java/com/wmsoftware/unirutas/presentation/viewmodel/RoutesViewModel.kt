@@ -4,18 +4,21 @@ import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.wmsoftware.unirutas.data.datasource.local.UserPreferences
+import com.wmsoftware.unirutas.domain.model.LocationInfo
 import com.wmsoftware.unirutas.network.service.LocationService
+import com.wmsoftware.unirutas.util.utilities.Const.TAG
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.shareIn
 import kotlinx.coroutines.flow.stateIn
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class RoutesViewModel @Inject constructor(
-    userPreferences: UserPreferences,
-    locationService: LocationService
+    private val userPreferences: UserPreferences,
+    private val locationService: LocationService
 ) : ViewModel() {
 
     val locationFlow = locationService.getLocationFlow().shareIn(
@@ -32,4 +35,11 @@ class RoutesViewModel @Inject constructor(
 
     val mapMyLocationConfig: StateFlow<Boolean?> = userPreferences.getMapMyLocationConfig()
         .stateIn(viewModelScope, SharingStarted.WhileSubscribed(), null)
+
+    fun updateUserLastLocation(location: LocationInfo?){
+        viewModelScope.launch {
+            Log.w(TAG,"Updating user local lastLocation: ${location.toString()}")
+            userPreferences.saveUserLastLocation(location)
+        }
+    }
 }

@@ -30,6 +30,7 @@ import com.google.android.gms.maps.model.MarkerOptions
 import com.wmsoftware.unirutas.R
 import com.wmsoftware.unirutas.data.datasource.local.UserPreferences
 import com.wmsoftware.unirutas.databinding.FragmentRoutesBinding
+import com.wmsoftware.unirutas.domain.model.LocationInfo
 import com.wmsoftware.unirutas.network.service.LocationService
 import com.wmsoftware.unirutas.presentation.viewmodel.RoutesViewModel
 import com.wmsoftware.unirutas.util.utilities.Const.TAG
@@ -157,6 +158,12 @@ class RoutesFragment : Fragment(), OnMapReadyCallback, OnMapsSdkInitializedCallb
             userLocationMarker.position = userLatLng
         }
         if (firstLookLocation){
+            viewModel.updateUserLastLocation(
+                LocationInfo(
+                    userLatLng.latitude.toString(),
+                    userLatLng.longitude.toString()
+                )
+            )
             map.animateCamera(CameraUpdateFactory.newLatLngZoom(userLatLng, 15f))
             firstLookLocation = false
         }

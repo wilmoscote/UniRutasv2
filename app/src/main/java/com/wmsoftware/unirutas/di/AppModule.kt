@@ -5,6 +5,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.wmsoftware.unirutas.data.datasource.local.UserPreferences
 import com.wmsoftware.unirutas.data.repository.AuthenticationRepository
+import com.wmsoftware.unirutas.data.repository.ProfileRepository
 import com.wmsoftware.unirutas.network.service.LocationService
 import dagger.Module
 import dagger.Provides
@@ -49,5 +50,11 @@ object AppModule {
     @Provides
     fun provideUserRepository(): AuthenticationRepository {
         return AuthenticationRepository(provideFirebaseFirestore(), provideFirebaseAuth())
+    }
+
+    @Singleton
+    @Provides
+    fun provideProfileRepository(): ProfileRepository {
+        return ProfileRepository(provideFirebaseFirestore(), provideFirebaseAuth())
     }
 }

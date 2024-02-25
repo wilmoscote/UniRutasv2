@@ -9,6 +9,7 @@ import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.intPreferencesKey
 import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
+import com.wmsoftware.unirutas.domain.model.LocationInfo
 import com.wmsoftware.unirutas.domain.model.User
 import com.wmsoftware.unirutas.util.utilities.Const.TAG
 import dagger.hilt.android.qualifiers.ApplicationContext
@@ -42,6 +43,22 @@ class UserPreferences @Inject constructor(@ApplicationContext private val contex
                     Json.decodeFromString<User>(jsonString)
                 } catch (e: Exception) {
                     Log.e(TAG, "Error decoding user", e)
+                    null
+                }
+            } else {
+                null
+            }
+        }
+    }
+
+    fun getUserLastLocation(): Flow<LocationInfo?> {
+        return dataStore.data.map { preferences ->
+            val jsonString = preferences[stringPreferencesKey("user_last_location")]
+            if (!jsonString.isNullOrEmpty()) {
+                try {
+                    Json.decodeFromString<LocationInfo>(jsonString)
+                } catch (e: Exception) {
+                    Log.e(TAG, "Error decoding location", e)
                     null
                 }
             } else {
@@ -87,6 +104,15 @@ class UserPreferences @Inject constructor(@ApplicationContext private val contex
             val jsonString = Json.encodeToString(User.serializer(), user)
             dataStore.edit { preferences ->
                 preferences[stringPreferencesKey("user")] = jsonString
+            }
+        }
+    }
+
+    suspend fun saveUserLastLocation(location: LocationInfo?){
+        location?.let {
+            val jsonString = Json.encodeToString(LocationInfo.serializer(), location)
+            dataStore.edit { preferences ->
+                preferences[stringPreferencesKey("user_last_location")] = jsonString
             }
         }
     }

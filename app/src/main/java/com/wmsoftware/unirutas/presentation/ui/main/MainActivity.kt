@@ -1,24 +1,35 @@
 package com.wmsoftware.unirutas.presentation.ui.main
 
 import android.Manifest
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.activity.viewModels
 import androidx.core.content.ContextCompat
+import androidx.core.view.isVisible
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
+import com.google.android.gms.tasks.OnCompleteListener
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.analytics.ktx.analytics
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.messaging.FirebaseMessaging
 import com.wmsoftware.unirutas.R
 import com.wmsoftware.unirutas.databinding.ActivityMainBinding
 import com.wmsoftware.unirutas.network.service.LocationService
+import com.wmsoftware.unirutas.presentation.ui.login.LoginActivity
+import com.wmsoftware.unirutas.presentation.viewmodel.MainViewModel
+import com.wmsoftware.unirutas.util.utilities.Const.TAG
 import dagger.hilt.android.AndroidEntryPoint
+import jp.wasabeef.blurry.Blurry
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -26,7 +37,7 @@ import javax.inject.Inject
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var analytics: FirebaseAnalytics
-
+    private val viewModel: MainViewModel by viewModels()
     private val requestPermissionLauncher =
         registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) { permissions ->
             val locationGranted = permissions[Manifest.permission.ACCESS_FINE_LOCATION] ?: false
@@ -51,6 +62,11 @@ class MainActivity : AppCompatActivity() {
 
         requestPermissionsIfNeeded()
         initView()
+        initObservers()
+        viewModel.checkCurrentUser()
+        viewModel.getUserChanges()
+        viewModel.getUserLasLocation()
+        checkFcmToken()
     }
 
     private fun initView(){
@@ -96,5 +112,42 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
+    }
+
+    private fun initObservers(){
+        viewModel.userDesactivated.observe(this){ disabled ->
+            if(disabled){
+                Blurry.with(this)
+                    .radius(10)
+                    .sampling(8)
+                    .async()
+                    .onto(binding.root)
+                binding.navHostFragment.isVisible = false
+                MaterialAlertDialogBuilder(this)
+                    .setTitle("Cuenta desactivada")
+                    .setMessage("Por motivos de seguridad su cuenta ha sido inhabilitada")
+                    .setPositiveButton("Entendido") { _, _ ->
+                        viewModel.logout()
+                        startActivity(Intent(this, LoginActivity::class.java))
+                        finishAffinity()
+                    }
+                    .setCancelable(false)
+                    .create()
+                    .show()
+            }
+        }
+    }
+
+    private fun checkFcmToken(){
+        FirebaseMessaging.getInstance().token.addOnCompleteListener(OnCompleteListener { task ->
+            if (!task.isSuccessful) {
+                return@OnCompleteListener
+            }
+
+            // Get new FCM registration token
+            val token = task.result
+            viewModel.updateFcmToken(token)
+            Log.i(TAG,"FCM TOKEN: $token")
+        })
     }
 }

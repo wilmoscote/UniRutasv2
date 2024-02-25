@@ -22,6 +22,7 @@ class AuthenticationRepository @Inject constructor(
             if(auth.currentUser?.isEmailVerified == true){
                 val documentSnapshot = db.collection("users").document(userId).get().await()
                 val user = documentSnapshot.toObject(User::class.java) ?: throw Exception("Usuario no encontrado")
+                if (user.status == 0) throw Exception("Por motivos de seguridad su cuenta ha sido inhabilitada")
                 emit(Result.success(user))
             } else throw Exception("Revise su correo electrónico y active su Cuenta")
         } catch (e: Exception) {

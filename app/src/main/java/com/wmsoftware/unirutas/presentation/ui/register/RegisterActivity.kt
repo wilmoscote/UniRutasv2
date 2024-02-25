@@ -18,6 +18,7 @@ import com.wmsoftware.unirutas.domain.model.User
 import com.wmsoftware.unirutas.presentation.ui.main.MainActivity
 import com.wmsoftware.unirutas.presentation.viewmodel.AuthenticationViewModel
 import com.wmsoftware.unirutas.util.utilities.Validator
+import com.wmsoftware.unirutas.util.utilities.Validator.getCurrentDateTime
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import java.time.LocalDateTime
@@ -151,12 +152,6 @@ class RegisterActivity : AppCompatActivity() {
                 }
             }
         }
-    }
-
-    private fun getCurrentDateTime(): String {
-        val current = LocalDateTime.now()
-        val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")
-        return current.format(formatter)
     }
 
     private fun getVersionName(): String {
